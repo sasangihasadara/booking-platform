@@ -22,18 +22,23 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const exceptionResponse =
       exception instanceof HttpException ? exception.getResponse() : null;
 
-    const message =
+    const responseBody =
       exceptionResponse && typeof exceptionResponse === 'object'
-        ? (exceptionResponse as Record<string, unknown>).message ?? 'Error'
-        : exception instanceof Error
-          ? exception.message
-          : 'Internal server error';
+        ? (exceptionResponse as Record<string, unknown>)
+        : null;
+
+    const message =
+      responseBody?.message ??
+      (exception instanceof Error ? exception.message : 'Internal server error');
+    const errors =
+      Array.isArray(responseBody?.message) ? responseBody?.message : undefined;
 
     response.status(status).json({
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
       message,
+      ...(errors ? { errors } : {}),
     });
   }
 }
