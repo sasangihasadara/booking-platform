@@ -116,6 +116,14 @@ Auth endpoints return:
 - `PATCH /api/bookings/:id/status` (requires JWT)
 - `PATCH /api/bookings/:id/cancel` (requires JWT)
 
+## Testing
+
+Run the lightweight unit checks with:
+
+```bash
+npm run test
+```
+
 ## Docker
 
 Run the full stack with:
