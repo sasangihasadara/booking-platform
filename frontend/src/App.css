@@ -1,67 +1,139 @@
 .app-container {
-  max-width: 980px;
+  max-width: 1120px;
   margin: 0 auto;
-  padding: 24px;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding: 28px;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: #111827;
-  background: #f8fafc;
+  background: #edeff5;
   min-height: 100vh;
+}
+
+.hero-banner {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #2563eb;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.hero-banner h1 {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1.05;
+}
+
+.hero-copy {
+  margin: 16px 0 0;
+  max-width: 560px;
+  line-height: 1.75;
+  color: #475569;
+}
+
+.hero-box {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+}
+
+.hero-box p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
 header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  gap: 16px;
+  margin-bottom: 18px;
 }
 
-h1 {
-  font-size: 32px;
+header h2 {
   margin: 0;
+  font-size: 26px;
+}
+
+.grid-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
 }
 
 .card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  padding: 22px;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+  border-radius: 24px;
+  padding: 26px;
+  box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+}
+
+.card-highlight {
+  border-color: #c7d2fe;
+}
+
+.card h3,
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+.card p {
+  margin: 0 0 18px;
+  color: #475569;
 }
 
 .field-row {
   display: grid;
-  grid-template-columns: 128px 1fr;
-  gap: 12px;
+  grid-template-columns: 140px 1fr;
+  gap: 10px;
   align-items: center;
   margin-bottom: 14px;
 }
 
 .field-row label {
-  font-weight: 600;
+  font-weight: 700;
+  color: #0f172a;
 }
 
 input {
   width: 100%;
-  padding: 11px 14px;
-  border-radius: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
   border: 1px solid #cbd5e1;
   font-size: 14px;
   background: #f8fafc;
+  color: #0f172a;
 }
 
 button {
-  background: #1d4ed8;
+  background: #2563eb;
   color: white;
   border: none;
-  border-radius: 12px;
-  padding: 10px 18px;
+  border-radius: 14px;
+  padding: 12px 20px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 700;
+  transition: background-color 0.2s ease;
 }
 
 button:hover {
-  background: #1e40af;
+  background: #1d4ed8;
 }
 
 button.logout-button {
@@ -80,15 +152,30 @@ button.logout-button:hover {
 
 .error {
   color: #b91c1c;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .toast {
-  border-radius: 12px;
-  padding: 14px 18px;
-  background: #ecfdf5;
-  color: #065f46;
-  margin-top: 18px;
+  border-radius: 16px;
+  padding: 16px 20px;
+  background: #e0f2fe;
+  color: #0369a1;
+  margin-top: 22px;
+}
+
+.room-title,
+.booking-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.room-details,
+.booking-details,
+.room-meta,
+.booking-status {
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.5;
 }
 
 ul {
@@ -98,13 +185,21 @@ ul {
 }
 
 li {
-  margin-bottom: 10px;
-  padding: 12px 14px;
-  border-radius: 12px;
-  background: #f1f5f9;
+  margin-bottom: 12px;
+  padding: 16px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 960px) {
+  .grid-layout,
+  .hero-banner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
   .field-row {
     grid-template-columns: 1fr;
   }
