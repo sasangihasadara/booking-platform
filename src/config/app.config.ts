@@ -1,7 +1,7 @@
 export interface AppEnvironment {
   port: number;
   database: {
-    path: string;
+    url: string;
   };
   jwt: {
     secret: string;
@@ -12,7 +12,9 @@ export interface AppEnvironment {
 export const AppConfig = (): AppEnvironment => ({
   port: Number(process.env.PORT ?? 3000),
   database: {
-    path: process.env.DATABASE_PATH ?? 'booking.sqlite',
+    url:
+      process.env.DATABASE_URL ??
+      'postgresql://postgres:1234@localhost:5432/booking_db',
   },
   jwt: {
     secret: process.env.JWT_SECRET ?? 'change-me',

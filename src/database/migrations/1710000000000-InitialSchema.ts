@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner, Table, TableForeignKey, TableIndex } from 'typeorm';
+import { BookingStatus } from '../../bookings/booking-status.enum';
 
 export class InitialSchema1710000000000 implements MigrationInterface {
   name = 'InitialSchema1710000000000';
@@ -29,12 +30,12 @@ export class InitialSchema1710000000000 implements MigrationInterface {
           },
           {
             name: 'createdAt',
-            type: 'datetime',
+            type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
           },
           {
             name: 'updatedAt',
-            type: 'datetime',
+            type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
           },
         ],
@@ -90,12 +91,12 @@ export class InitialSchema1710000000000 implements MigrationInterface {
           },
           {
             name: 'createdAt',
-            type: 'datetime',
+            type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
           },
           {
             name: 'updatedAt',
-            type: 'datetime',
+            type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
           },
         ],
@@ -149,9 +150,10 @@ export class InitialSchema1710000000000 implements MigrationInterface {
           },
           {
             name: 'status',
-            type: 'varchar',
-            length: '20',
-            default: "'PENDING'",
+            type: 'enum',
+            enum: Object.values(BookingStatus),
+            enumName: 'booking_status_enum',
+            default: `'${BookingStatus.PENDING}'`,
           },
           {
             name: 'notes',
@@ -160,12 +162,12 @@ export class InitialSchema1710000000000 implements MigrationInterface {
           },
           {
             name: 'createdAt',
-            type: 'datetime',
+            type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
           },
           {
             name: 'updatedAt',
-            type: 'datetime',
+            type: 'timestamp',
             default: 'CURRENT_TIMESTAMP',
           },
         ],
@@ -202,6 +204,7 @@ export class InitialSchema1710000000000 implements MigrationInterface {
       await queryRunner.dropForeignKey('bookings', foreignKey);
     }
     await queryRunner.dropTable('bookings');
+    await queryRunner.query('DROP TYPE IF EXISTS "booking_status_enum"');
     await queryRunner.dropIndex('users', 'IDX_users_email');
     await queryRunner.dropTable('services');
     await queryRunner.dropTable('users');

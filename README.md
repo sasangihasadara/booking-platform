@@ -1,6 +1,6 @@
 # Booking Platform API
 
-A NestJS REST API for managing services and customer bookings with JWT authentication, validation, Swagger documentation, and SQLite persistence.
+A NestJS REST API for managing services and customer bookings with JWT authentication, validation, Swagger documentation, and PostgreSQL persistence.
 
 ## Features
 
@@ -10,14 +10,14 @@ A NestJS REST API for managing services and customer bookings with JWT authentic
 - Booking status updates, cancellation, pagination, and search
 - Global validation and exception handling
 - Swagger UI documentation
-- SQLite database with migration support
+- PostgreSQL database with migration support
 
 ## Tech Stack
 
 - NestJS
 - TypeScript
 - TypeORM
-- SQLite
+- PostgreSQL
 - Swagger
 
 ## Installation
@@ -42,14 +42,20 @@ A NestJS REST API for managing services and customer bookings with JWT authentic
 ## Environment Variables
 
 - `PORT` - server port, default `3000`
-- `DATABASE_PATH` - SQLite database path, default `booking.sqlite`
+- `DATABASE_URL` - PostgreSQL connection string, default `postgresql://postgres:1234@localhost:5432/booking_db`
 - `JWT_SECRET` - JWT signing secret
 - `JWT_EXPIRES_IN` - access token expiration, default `1d`
 - `SWAGGER_PATH` - Swagger route path, default `docs`
 
 ## Database Setup
 
-The project uses SQLite by default. The database file is created automatically at `booking.sqlite` unless `DATABASE_PATH` is changed.
+Create a PostgreSQL database named `booking_db`, then update `DATABASE_URL` if your username, password, host, or port are different.
+
+Example:
+
+```bash
+createdb booking_db
+```
 
 ## Running Migrations
 

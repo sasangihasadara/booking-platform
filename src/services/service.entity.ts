@@ -31,9 +31,9 @@ export class ServiceEntity {
   @OneToMany(() => BookingEntity, (booking) => booking.service)
   bookings: BookingEntity[];
 
-  @CreateDateColumn({ type: 'datetime' })
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'datetime' })
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 }

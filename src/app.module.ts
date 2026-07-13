@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PassportModule } from '@nestjs/passport';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { AppController } from './app.controller';
 import { AppConfig } from './config/app.config';
 import { AuthModule } from './auth/auth.module';
 import { BookingEntity } from './bookings/booking.entity';
@@ -21,8 +22,11 @@ import { User } from './users/user.entity';
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        type: 'sqlite',
-        database: configService.get<string>('database.path', 'booking.sqlite'),
+        type: 'postgres',
+        url: configService.get<string>(
+          'database.url',
+          'postgresql://postgres:1234@localhost:5432/booking_db',
+        ),
         entities: [User, ServiceEntity, BookingEntity],
         migrations: [join(__dirname, 'database/migrations/*{.ts,.js}')],
         synchronize: false,
@@ -33,5 +37,6 @@ import { User } from './users/user.entity';
     ServicesModule,
     BookingsModule,
   ],
+  controllers: [AppController],
 })
 export class AppModule {}

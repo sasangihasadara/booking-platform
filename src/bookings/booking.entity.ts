@@ -42,15 +42,20 @@ export class BookingEntity {
   @Column({ type: 'time' })
   bookingTime: string;
 
-  @Column({ type: 'simple-enum', enum: BookingStatus, default: BookingStatus.PENDING })
+  @Column({
+    type: 'enum',
+    enum: BookingStatus,
+    enumName: 'booking_status_enum',
+    default: BookingStatus.PENDING,
+  })
   status: BookingStatus;
 
   @Column({ type: 'text', nullable: true })
   notes: string | null;
 
-  @CreateDateColumn({ type: 'datetime' })
+  @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'datetime' })
+  @UpdateDateColumn({ type: 'timestamp' })
   updatedAt: Date;
 }
