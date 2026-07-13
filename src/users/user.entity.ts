@@ -12,6 +12,9 @@ export class User {
   @Column({ type: 'varchar', length: 255 })
   password: string;
 
+  @Column({ type: 'text', nullable: true })
+  refreshToken: string | null;
+
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 

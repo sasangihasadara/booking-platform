@@ -1,0 +1,7 @@
+node_modules
+dist
+.git
+.env
+booking.sqlite
+npm-debug.log
+README.md
